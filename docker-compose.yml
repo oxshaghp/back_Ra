@@ -1,41 +1,42 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:15-alpine
+  mysql:
+    image: mysql:8.0
     container_name: freelancer_db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: freelancer_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: freelancer_db
     ports:
-      - "5432:5432"
+      - "3306:3306"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - mysql_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
       - freelancer_network
+    command: --default-authentication-plugin=mysql_native_password
 
-  # Optional: PgAdmin for database management
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: freelancer_pgadmin
+  # Optional: phpMyAdmin for database management (like Adminer)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: freelancer_phpmyadmin
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@example.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: root
     ports:
-      - "5050:80"
+      - "8080:80"
     depends_on:
-      - postgres
+      - mysql
     networks:
       - freelancer_network
 
 volumes:
-  postgres_data:
+  mysql_data:
     driver: local
 
 networks:

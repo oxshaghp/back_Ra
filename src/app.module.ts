@@ -10,11 +10,11 @@ import { User, Project, Review } from './entities';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'mysql',
       host: process.env.DB_HOST || 'localhost',
-      port: parseInt(process.env.DB_PORT || '5432'),
-      username: process.env.DB_USER || 'postgres',
-      password: process.env.DB_PASSWORD || 'postgres',
+      port: parseInt(process.env.DB_PORT || '3306'),
+      username: process.env.DB_USER || 'root',
+      password: process.env.DB_PASSWORD || 'root',
       database: process.env.DB_NAME || 'freelancer_db',
       entities: [User, Project, Review],
       synchronize: process.env.NODE_ENV !== 'production',

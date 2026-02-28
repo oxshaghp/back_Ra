@@ -22,9 +22,9 @@ cp .env.example .env
 
 \`\`\`env
 DB_HOST=localhost
-DB_PORT=5432
-DB_USER=your_username
-DB_PASSWORD=your_password
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=root
 DB_NAME=freelancer_db
 JWT_SECRET=your-secure-secret-key
 \`\`\`
@@ -32,7 +32,7 @@ JWT_SECRET=your-secure-secret-key
 ### 3. إنشاء قاعدة البيانات (اختياري، سيتم الإنشاء تلقائياً)
 
 \`\`\`bash
-psql -U postgres -c "CREATE DATABASE freelancer_db;"
+mysql -u root -proot -e "CREATE DATABASE freelancer_db CHARACTER SET utf8mb4;"
 \`\`\`
 
 ### 4. تثبيت المكتبات والتشغيل

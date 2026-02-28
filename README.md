@@ -29,7 +29,7 @@ Backend بسيط وفعال لإدارة مشاريعك والتقييمات م�
 ## 📋 المتطلبات
 
 - Node.js v16+
-- PostgreSQL v12+
+- MySQL v8.0+
 - npm أو yarn
 
 ## ⚡ البدء السريع
@@ -46,11 +46,14 @@ cp .env.example .env
 npm install
 ```
 
-### 3. إنشاء قاعدة البيانات (PostgreSQL)
+### 3. إنشاء قاعدة البيانات (MySQL)
 
 ```bash
-# على PowerShell أو Command Prompt
-psql -U postgres -c "CREATE DATABASE freelancer_db;"
+# استخدم Docker (الأسهل):
+docker-compose up -d
+
+# أو MySQL محلي:
+mysql -u root -proot -e "CREATE DATABASE freelancer_db CHARACTER SET utf8mb4;"
 ```
 
 ### 4. تشغيل التطبيق
