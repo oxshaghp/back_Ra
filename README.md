@@ -1,93 +1,229 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 🚀 Backend - إدارة المشاريع والتقييمات
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend بسيط وفعال لإدارة مشاريعك والتقييمات من العملاء مع نظام authentication آمن.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🎯 الميزات
 
-## Description
+✨ **نظام المصادقة:**
+- تسجيل مستخدم جديد (Admin)
+- تسجيل الدخول مع JWT
+- كلمات مرور مشفرة
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+📊 **إدارة المشاريع:**
+- إضافة مشاريع جديدة
+- تعديل بيانات المشروع
+- حذف المشاريع
+- عرض جميع المشاريع
 
-## Project setup
+⭐ **إدارة التقييمات:**
+- إضافة تقييمات من العملاء (1-5 نجوم)
+- التعليقات على المشاريع
+- تعديل وحذف التقييمات
+- عرض جميع تقييمات المشروع
 
-```bash
-$ npm install
-```
+🔒 **الأمان:**
+- JWT Authentication مع صلاحية انتهاء الصلاحية
+- التحقق من الصحة على جميع البيانات
+- صلاحيات المستخدم (يمكن فقط تعديل مشاريعك)
 
-## Compile and run the project
+## 📋 المتطلبات
 
-```bash
-# development
-$ npm run start
+- Node.js v16+
+- PostgreSQL v12+
+- npm أو yarn
 
-# watch mode
-$ npm run start:dev
+## ⚡ البدء السريع
 
-# production mode
-$ npm run start:prod
-```
-
-## Run tests
+### 1. نسخ متغيرات البيئة
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cp .env.example .env
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. تثبيت المكتبات
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 3. إنشاء قاعدة البيانات (PostgreSQL)
 
-## Resources
+```bash
+# على PowerShell أو Command Prompt
+psql -U postgres -c "CREATE DATABASE freelancer_db;"
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+### 4. تشغيل التطبيق
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+# في وضع التطوير
+npm run start:dev
 
-## Support
+# في الإنتاج
+npm run start:prod
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+سيعمل التطبيق على `http://localhost:3000` ✅
 
-## Stay in touch
+---
+
+## 📚 أمثلة الـ API
+
+### 1️⃣ التسجيل
+
+```bash
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin",
+    "email": "admin@example.com",
+    "password": "password123"
+  }'
+```
+
+### 2️⃣ تسجيل الدخول
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "username": "admin",
+    "password": "password123"
+  }'
+```
+
+احفظ الـ `accessToken` النتيجة.
+
+### 3️⃣ إنشاء مشروع جديد
+
+```bash
+curl -X POST http://localhost:3000/projects \
+  -H "Authorization: Bearer <your_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "تطبيق الويب",
+    "description": "تطبيق ويب للمتجر الإلكتروني",
+    "imageUrl": "https://example.com/img.jpg",
+    "price": 5000
+  }'
+```
+
+### 4️⃣ إضافة تقييم
+
+```bash
+curl -X POST http://localhost:3000/reviews \
+  -H "Authorization: Bearer <your_token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "projectId": "<project_id>",
+    "rating": 5,
+    "comment": "مشروع ممتاز!",
+    "clientName": "أحمد",
+    "clientEmail": "ahmed@example.com"
+  }'
+```
+
+---
+
+## 🗂️ بنية المشروع
+
+```
+src/
+├── auth/              # Authentication & JWT
+│   ├── auth.controller.ts
+│   ├── auth.service.ts
+│   ├── auth.module.ts
+│   ├── auth.dto.ts
+│   ├── jwt.strategy.ts
+│   └── jwt-auth.guard.ts
+├── projects/          # تدير المشاريع
+│   ├── projects.controller.ts
+│   ├── projects.service.ts
+│   ├── projects.module.ts
+│   └── projects.dto.ts
+├── reviews/           # إدارة التقييمات
+│   ├── reviews.controller.ts
+│   ├── reviews.service.ts
+│   ├── reviews.module.ts
+│   └── reviews.dto.ts
+├── entities/          # Database models
+│   ├── user.entity.ts
+│   ├── project.entity.ts
+│   └── review.entity.ts
+├── app.module.ts      # Module رئيسي
+└── main.ts           # نقطة الدخول
+```
+
+---
+
+## 🔐 الأمان والمميزات
+
+- ✅ **Bcrypt**: تشفير كلمات المرور
+- ✅ **JWT**: توكنات آمنة مع صلاحية انتهاء (24 ساعة)
+- ✅ **Validation**: التحقق من صحة جميع البيانات المدخلة
+- ✅ **Authorization**: التحقق من أن المستخدم يملك المشروع
+- ✅ **CORS**: متاح للـ frontend
+
+---
+
+## 📖 للمزيد من المعلومات
+
+اطلع على ملف `SETUP.md` الذي يحتوي على توثيق شامل لجميع الـ endpoints والأمثلة الإضافية.
+
+---
+
+## 🛠️ الأوامر المتاحة
+
+```bash
+# بناء المشروع
+npm run build
+
+# التطوير مع Watch
+npm run start:dev
+
+# التطوير مع Debugging
+npm run start:debug
+
+# الإنتاج
+npm run start:prod
+
+# التحقق من الأخطاء
+npm run lint
+
+# تنسيق الكود
+npm run format
+
+# الاختبارات
+npm run test
+npm run test:watch
+npm run test:cov
+npm run test:e2e
+```
+
+---
+
+## 📝 الملاحظات
+
+> **⚠️ مهم:** قبل الإنتاج:
+> 1. غير `JWT_SECRET` إلى قيمة قوية وآمنة
+> 2. استخدم قاعدة بيانات production
+> 3. فعل HTTPS بدلاً من HTTP
+> 4. أضف Rate Limiting
+> 5. أضف Logging والـ Monitoring
+
+---
+
+## 🤝 الدعم
+
+أثناء التطوير أو إذا واجهت أي مشاكل:
+
+1. تأكد من أن PostgreSQL مشتغل
+2. تأكد من بيانات الاتصال في `.env`
+3. تحقق من الـ terminal لرسائل الخطأ
+
+---
+
+**Built with ❤️ using NestJS**
 
 - Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
 - Website - [https://nestjs.com](https://nestjs.com/)
