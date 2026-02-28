@@ -16,8 +16,8 @@ export class Project {
   @Column({ type: 'varchar', length: 255, nullable: true })
   imageUrl: string;
 
-  @Column({ type: 'decimal', precision: 10, scale: 2, nullable: true })
-  price: number;
+  @Column({ type: 'json', nullable: true })
+  tags: string[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

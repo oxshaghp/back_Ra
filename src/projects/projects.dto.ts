@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsNumber, Min, Max } from 'class-validator';
+import { IsString, IsOptional, IsNumber, Min } from 'class-validator';
 
 export class CreateProjectDto {
   @IsString()
@@ -10,6 +10,10 @@ export class CreateProjectDto {
   @IsOptional()
   @IsString()
   imageUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  tags?: string;
 
   @IsOptional()
   @IsNumber()
@@ -29,6 +33,10 @@ export class UpdateProjectDto {
   @IsOptional()
   @IsString()
   imageUrl?: string;
+
+  @IsOptional()
+  @IsString()
+  tags?: string;
 
   @IsOptional()
   @IsNumber()

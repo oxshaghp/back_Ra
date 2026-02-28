@@ -11,12 +11,33 @@ export class ProjectsService {
     @InjectRepository(Project) private projectsRepository: Repository<Project>,
   ) {}
 
-  async create(createProjectDto: CreateProjectDto, user: User): Promise<Project> {
-    const project = this.projectsRepository.create({
+  async create(
+    createProjectDto: CreateProjectDto,
+    file: Express.Multer.File,
+    user: User,
+  ): Promise<Project> {
+    const projectData: any = {
       ...createProjectDto,
       userId: user.id,
-    });
-    return this.projectsRepository.save(project);
+    };
+
+    // Handle uploaded file
+    if (file) {
+      projectData.imageUrl = `/uploads/${file.filename}`;
+    }
+
+    // Parse tags from JSON string
+    if (createProjectDto.tags) {
+      try {
+        projectData.tags = JSON.parse(createProjectDto.tags);
+      } catch (error) {
+        projectData.tags = [];
+      }
+    }
+
+    const project = this.projectsRepository.create(projectData);
+    const savedProject = await this.projectsRepository.save(project);
+    return savedProject as unknown as Project;
   }
 
   async findAll(user: User): Promise<Project[]> {
@@ -42,12 +63,30 @@ export class ProjectsService {
   async update(
     id: string,
     updateProjectDto: UpdateProjectDto,
+    file: Express.Multer.File,
     user: User,
   ): Promise<Project> {
     const project = await this.findOne(id, user);
 
-    Object.assign(project, updateProjectDto);
-    return this.projectsRepository.save(project);
+    const updateData: any = { ...updateProjectDto };
+
+    // Handle uploaded file
+    if (file) {
+      updateData.imageUrl = `/uploads/${file.filename}`;
+    }
+
+    // Parse tags from JSON string
+    if (updateProjectDto.tags) {
+      try {
+        updateData.tags = JSON.parse(updateProjectDto.tags);
+      } catch (error) {
+        updateData.tags = project.tags || [];
+      }
+    }
+
+    Object.assign(project, updateData);
+    const savedProject = await this.projectsRepository.save(project);
+    return savedProject as unknown as Project;
   }
 
   async delete(id: string, user: User): Promise<void> {
